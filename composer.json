@@ -1,0 +1,19 @@
+{
+    "name": "flexibleit/support",
+    "description": "A complete support system library for your website.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ajit Das",
+            "email": "ajitdas2900@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload-dev": {
+        "psr-4": {
+            "Flexibleit\\Support\\": "src/"
+        }
+    }
+}
