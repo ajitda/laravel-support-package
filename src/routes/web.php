@@ -8,4 +8,5 @@
 // });
 Route::group(['namespace'=>'Flexibleit\Support\Http\Controllers'], function (){
     Route::get('/support', 'SupportController@index');
+    Route::match(['get', 'post'], '/tickets/add', 'SupportTicketController@add')->name('ticket.add');
 });

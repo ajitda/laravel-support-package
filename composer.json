@@ -15,5 +15,12 @@
         "psr-4": {
             "Flexibleit\\Support\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Flexibleit\\Support\\SupportServiceProvider"
+            ]
+        }
     }
 }

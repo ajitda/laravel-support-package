@@ -5,10 +5,15 @@
 @endphp
 @extends(config('support.layout'))
 @section('content')
-<div class="cotainer">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Support page</h1>
+            <div class="support-container py-4">
+                <h1>Support <a href="#" class="btn btn-sm btn-info float-right">Add Ticket</a></h1>
+                <form action="">
+                    
+                </form>
+            </div>
         </div>
     </div>
 </div>
