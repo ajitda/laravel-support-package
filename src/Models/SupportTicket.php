@@ -16,4 +16,19 @@ class SupportTicket extends Model
         }
         return false;
     }
+
+    public function getAll()
+    {
+        return $this->latest()->get();
+    }
+
+    public function ticketNotes()
+    {
+        return $this->hasMany('Flexibleit\Support\Models\SupportNote', 'ticket_id');
+    }
+
+    public function getById($id)
+    {
+        return $this->with('ticketNotes')->where('id', $id)->first();
+    }
 }

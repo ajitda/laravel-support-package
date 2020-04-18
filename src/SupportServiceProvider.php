@@ -11,7 +11,7 @@ class SupportServiceProvider extends ServiceProvider{
         $this->loadViewsFrom(__DIR__.'/views', 'support');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->mergeConfigFrom(__DIR__.'/config/support.php', 'support');
-        
+        $this->registerHelpers();
         $this->publishes([
             __DIR__.'/config/support.php' => config_path('support.php')
         ]);
@@ -20,5 +20,17 @@ class SupportServiceProvider extends ServiceProvider{
     public function register()
     {
 
+    }
+
+    /**
+     * Register helpers file
+     */
+    public function registerHelpers()
+    {
+        // Load the helpers in app/Http/helpers.php
+        if (file_exists($file = __DIR__.'/Http/Helpers/helpers.php'))
+        {
+            require $file;
+        }
     }
 }

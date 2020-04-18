@@ -3,12 +3,15 @@
 namespace Flexibleit\Support\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Flexibleit\Support\Models\SupportTicket;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
+
     public function index()
     {
-        return view('support::support');
+        $data['sp_tickets'] = (new SupportTicket())->getAll();
+        return view('support::support', $data);
     }
 }

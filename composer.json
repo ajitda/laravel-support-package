@@ -11,6 +11,11 @@
     ],
     "minimum-stability": "dev",
     "require": {},
+    "autoload": {
+        "files": [
+            "src/Http/Helpers/helpers.php"
+        ]
+    },
     "autoload-dev": {
         "psr-4": {
             "Flexibleit\\Support\\": "src/"

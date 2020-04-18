@@ -8,11 +8,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="support-container py-4">
-                <h1>Support <a href="#" class="btn btn-sm btn-info float-right">Add Ticket</a></h1>
-                <form action="">
-                    
-                </form>
+            <div class="support-ticket-container py-8">
+                @include('support::all_tickets')
             </div>
         </div>
     </div>
