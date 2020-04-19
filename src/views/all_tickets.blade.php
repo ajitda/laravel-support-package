@@ -16,6 +16,7 @@
             <button type="submit" class="btn btn-dark">Submit</button>
         </form>
     </div>
-    @php $closed_status = 0; @endphp
-    @include('support::ticket_list')
+    @include('support::ticket_list', ['tickets'=>$sp_tickets])
+    <h2 class="text-center my-4">Closed Tickets</h2>
+    @include('support::ticket_list', ['tickets'=>$sp_closed_tickets])
 </div>

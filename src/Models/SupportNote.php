@@ -17,6 +17,16 @@ class SupportNote extends Model
         return false;
     }
 
+    public function noteFiles()
+    {
+        return $this->hasMany('Flexibleit\Support\Models\SupportUpload', 'support_note_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
     // public function supportTicket()
     // {
     //     return $this->belongsTo('Flexibleit\Support\Models\SupportTicket', 'ticket_id');

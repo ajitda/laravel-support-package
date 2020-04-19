@@ -14,4 +14,5 @@ Route::group(['namespace'=>'Flexibleit\Support\Http\Controllers','middleware'=>[
     Route::get('/', 'SupportController@index')->name($prefix);
     Route::match(['get', 'post'], '/tickets/add', 'SupportTicketController@add')->name($prefix.'.ticket.add');
     Route::get('/tickets/show/{ticket_id}', 'SupportTicketController@show')->name($prefix.'.ticket.show');
+    Route::post('/tickets/add-note/{ticket_id}', 'SupportTicketController@addNote')->name($prefix.'.ticket.add_note');
 });

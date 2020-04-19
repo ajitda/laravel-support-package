@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SupportTicket extends Model
 {
+
     public function saveTicket($input)
     {
         $this->user_id = $input['user_id'];
@@ -17,9 +18,34 @@ class SupportTicket extends Model
         return false;
     }
 
-    public function getAll()
+    public function updateTicket($input, $id)
     {
-        return $this->latest()->get();
+        $ticket = $this->findOrFail($id);
+        $ticket->closed = $input['closed'];
+        if ($ticket->save()) {
+            return $ticket;
+        }
+        return false;
+    }
+
+    public function getAll($paginate = null, $option = null)
+    {
+        $support_admin_col = config('support.support_admin');
+        $user = auth()->user();
+        $result = $this->latest();
+        if ($user->$support_admin_col != 1) {
+            $result = $result->where('user_id', $user->id);
+        }
+        if (!empty($option)) {
+            $result = $result->where($option);
+        }
+        if (!empty($paginate['paginate'])) {
+            return $result->paginate($paginate['paginate']);
+        } else if (!empty($paginate['get'])) {
+            return $result->get();
+        } else {
+            return $result;
+        }
     }
 
     public function ticketNotes()
@@ -29,6 +55,6 @@ class SupportTicket extends Model
 
     public function getById($id)
     {
-        return $this->with('ticketNotes')->where('id', $id)->first();
+        return $this->with('ticketNotes', 'ticketNotes.noteFiles', 'ticketNotes.user')->where('id', $id)->first();
     }
 }

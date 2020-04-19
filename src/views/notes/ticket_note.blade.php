@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="support-ticket-container py-8">
-                @include('support::all_tickets')
+                @include('support::ticket_details')
             </div>
         </div>
     </div>
