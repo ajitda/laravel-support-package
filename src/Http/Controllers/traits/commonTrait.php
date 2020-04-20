@@ -26,8 +26,8 @@ trait CommonTrait
         $extension = $image_tmp->getClientOriginalExtension();
         $filename = rand(1111, 9999999).".".$extension;
         $large_image_path = $path.'/'.$filename;
-        $large_image = Image::make($image_tmp);
-        Storage::put($large_image_path, $large_image->encode());
+        // $large_image = Image::make($image_tmp);
+        Storage::put($large_image_path, $image_tmp);
         return $filename;
     }
 

@@ -9,6 +9,7 @@ use Flexibleit\Support\Models\SupportTicket;
 use Flexibleit\Support\Models\SupportUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SupportTicketController extends Controller
 {
@@ -17,6 +18,7 @@ class SupportTicketController extends Controller
     public function add(Request $request) 
     {
         $input = $request->all();
+        $this->validator($input)->validate();
         $input['user_id'] = Auth::user()->id;
         $ticketObj = new SupportTicket();
         $ticket = $ticketObj->saveTicket($input);
@@ -77,6 +79,7 @@ class SupportTicketController extends Controller
             $input['closed'] = ($input['status'] == 0) ? 1 : 0;
             $data['sp_ticket'] = (new SupportTicket())->updateTicket($input, $ticket_id);
         } else {
+            $this->validator($input)->validate();
             $input['user_id'] = Auth::user()->id;
             $input['ticket_id'] = $ticket_id;
             $file_urls = [];
@@ -130,5 +133,13 @@ class SupportTicketController extends Controller
                 $this->sendEmail($email, $message, $button);
             }
         }
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'note' => ['required', 'string'],
+            'description' => ['mimes:jpeg,bmp,png,gif', 'max:10000'],
+        ]);
     }
 }
