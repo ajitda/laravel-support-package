@@ -14,7 +14,8 @@ class SupportServiceProvider extends ServiceProvider{
         $this->mergeConfigFrom(__DIR__.'/config/support.php', 'support');
         $this->registerHelpers();
         $this->publishes([
-            __DIR__.'/config/support.php' => config_path('support.php')
+            __DIR__.'/config/support.php' => config_path('support.php'),
+            __DIR__.'/views' => resource_path('views/vendor/support'),
         ]);
     }
 
