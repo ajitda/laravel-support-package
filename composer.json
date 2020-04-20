@@ -12,13 +12,18 @@
     "minimum-stability": "dev",
     "require": {},
     "autoload": {
+        "psr-4": {
+            "Flexibleit\\Support\\": "src/"
+        },
         "files": [
             "src/Http/Helpers/helpers.php"
         ]
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Flexibleit\\Support\\": "src/"
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Flexibleit\\Support\\SupportServiceProvider"
+            ]
         }
     }
 }
