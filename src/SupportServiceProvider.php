@@ -1,4 +1,5 @@
 <?php
+
 namespace Flexibleit\Support;
 
 use Illuminate\Support\ServiceProvider;
