@@ -1,3 +1,4 @@
+@if(!empty($tickets))
 @foreach($tickets as $ticket)
 <div class="card mt-3">
     <div class="card-body border-grey p-5" style="margin-bottom:0px">
@@ -14,3 +15,4 @@
     </div>
 </div>
 @endforeach
+@endif

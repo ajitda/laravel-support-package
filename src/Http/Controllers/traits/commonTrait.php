@@ -24,10 +24,11 @@ trait CommonTrait
     public function uploadFile($image_tmp, $path)
     {
         $extension = $image_tmp->getClientOriginalExtension();
-        $filename = rand(1111, 9999999).".".$extension;
-        $large_image_path = $path.'/'.$filename;
+        // $filename = rand(1111, 9999999).".".$extension;
+        // $large_image_path = $path.'/'.$filename;
         // $large_image = Image::make($image_tmp);
-        Storage::put($large_image_path, $image_tmp);
+        $filename = Storage::put($path, $image_tmp);
+        $filename = str_ireplace($path."/", "", $filename);
         return $filename;
     }
 

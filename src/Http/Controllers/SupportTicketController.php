@@ -25,7 +25,7 @@ class SupportTicketController extends Controller
         $input['ticket_id'] = $ticket->id;
         $file_urls = [];
         if($request->hasFile('upload_file')) {
-            $file_urls = $this->uploadMultipleFiles($request->upload_file, 'public/supports');
+            $file_urls = $this->uploadMultipleFiles($request->upload_file, 'public/supports/');
         }
         $this->processNote($input, $file_urls);
         // Send all support emails
@@ -79,12 +79,13 @@ class SupportTicketController extends Controller
             $input['closed'] = ($input['status'] == 0) ? 1 : 0;
             $data['sp_ticket'] = (new SupportTicket())->updateTicket($input, $ticket_id);
         } else {
+            // dd($input);
             $this->validator($input)->validate();
             $input['user_id'] = Auth::user()->id;
             $input['ticket_id'] = $ticket_id;
             $file_urls = [];
             if($request->hasFile('upload_file')) {
-                $file_urls = $this->uploadMultipleFiles($request->upload_file, 'public/supports');
+                $file_urls = $this->uploadMultipleFiles($request->upload_file, 'public/supports/');
             }
            $this->processNote($input, $file_urls);
             $data['sp_ticket'] = (new SupportTicket())->getById($ticket_id);
@@ -139,7 +140,7 @@ class SupportTicketController extends Controller
     {
         return Validator::make($data, [
             'note' => ['required', 'string'],
-            'description' => ['mimes:jpeg,bmp,png,gif', 'max:10000'],
+            'upload_file.*' => ['mimes:jpeg,bmp,png,gif,pdf,zip,avi,mp4', 'max:10000'],
         ]);
     }
 }
